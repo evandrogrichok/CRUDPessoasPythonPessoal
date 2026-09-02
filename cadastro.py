@@ -11,6 +11,19 @@ def exibirMenu():
     print("4 - Listar pessoas")
     print("5 - Sair")
     return int(input("Escolha uma opcao: "))
+
+def cadastrarPessoa(nomes, idades, emails):
+    nome = input("Informe o nome: ")
+    nomes.append(nome)
+    idade = input("Informe a idade: ")
+    idades.append(idade)
+    email = input("Informe o email: ")
+    emails.append(email)
+    if int(idade) >= 18:
+        print("Situacao: Maior de idade")
+    else:
+        print("Situacao: Menor de idade") 
+
  
 nome1 = ""
 idade1 = 0
@@ -21,134 +34,68 @@ email2 = ""
 nome3 = ""
 idade3 = 0
 email3 = ""
+
+nomes = []
+idades = []
+emails = []
  
 qtd = 0
 op = 0
  
 while op != 5:
 
-    exibirMenu()
-    
+    op = exibirMenu()
+
     if op == 1:
-        if qtd == 3:
-            print("Cadastro cheio")
-        else:
-            n = input("Nome: ")
-            i = int(input("Idade: "))
-            e = input("E-mail: ")
-            if qtd == 0:
-                nome1 = n
-                idade1 = i
-                email1 = e
-            elif qtd == 1:
-                nome2 = n
-                idade2 = i
-                email2 = e
-            else:
-                nome3 = n
-                idade3 = i
-                email3 = e
-            qtd = qtd + 1
-            print("Pessoa cadastrada!")
-            print("Nome: " + n)
-            print("Idade: " + str(i))
-            print("E-mail: " + e)
-            if i >= 18:
-                print("Situacao: Maior de idade")
-            else:
-                print("Situacao: Menor de idade") 
+        cadastrarPessoa(nomes, idades, emails)
+        qtd = qtd + 1
+
     elif op == 2:
-        b = input("Nome para consultar: ")
-        achou = 0
-        if qtd >= 1 and b == nome1:
-            achou = 1
-            print("Nome: " + nome1)
-            print("Idade: " + str(idade1))
-            print("E-mail: " + email1)
-            if idade1 >= 18:
-                print("Situacao: Maior de idade")
-            else:
-                print("Situacao: Menor de idade")
-        if qtd >= 2 and b == nome2:
-            achou = 1
-            print("Nome: " + nome2)
-            print("Idade: " + str(idade2))
-            print("E-mail: " + email2)
-        if qtd >= 3 and b == nome3:
-            achou = 1
-            print("Nome: " + nome3)
-            print("Idade: " + str(idade3))
-            print("E-mail: " + email3)
-        if achou == 0:
-            print("Nao encontrado") 
+        nomeConsulta = input("Digite o nome para consultar: ").lower()
+        achou = False
+        i = 0
+        while i < len(nomes):
+            if nomeConsulta == nomes[i].lower():
+                print ("nome: " + nomes[i])
+                print ("idade: " + idades[i])
+                print ("emails: " + emails[i])
+                achou = True
+                break
+            i = i + 1
+
+        if achou == False:
+            print("Pessoa não encontrada!")
+
     elif op == 3:
-        b = input("Nome para alterar: ")
-        achou = 0
-        if b == nome1:
-            achou = 1
-            print("Dados atuais:")
-            print("Nome: " + nome1)
-            print("Idade: " + str(idade1))
-            print("E-mail: " + email1)
-            n = input("Novo nome: ")
-            i = int(input("Nova idade: "))
-            e = input("Novo e-mail: ")
-            nome1 = n
-            idade1 = i
-            if e != "":
-                email1 = e
-            print("Alterado!")
-        elif b == nome2:
-            achou = 1
-            print("Dados atuais:")
-            print("Nome: " + nome2)
-            print("Idade: " + str(idade2))
-            print("E-mail: " + email2)
-            n = input("Novo nome: ")
-            i = int(input("Nova idade: "))
-            e = input("Novo e-mail: ")
-            nome2 = n
-            idade2 = i
-            email2 = e
-            print("Alterado!")
-        elif b == nome3:
-            achou = 1
-            print("Dados atuais:")
-            print("Nome: " + nome3)
-            print("Idade: " + str(idade3))
-            print("E-mail: " + email3)
-            n = input("Novo nome: ")
-            i = int(input("Nova idade: "))
-            e = input("Novo e-mail: ")
-            nome3 = n
-            idade3 = i
-            email3 = e
-            print("Alterado!")
-        if achou == 0:
-            print("Nao encontrado") 
+        nomeConsulta = input("Digite o nome para consultar: ").lower()
+        achou = False
+        i = 0
+        while i < len(nomes):
+            if nomeConsulta == nomes[i].lower():
+                nomes[i] = input("Alterar o nome dessa pessoa de " + nomes[i] + " para: ")
+                idades[i] = int(input("Alterar idade dessa pessoa de "+ str(idades[i]) + " para: "))
+                emails[i] = input("Alterar email dessa pessoa de "+ emails[i] + " para: ")
+                achou = True
+                break
+            i = i + 1
+
+        if achou == False:
+            print("Pessoa não encontrada!")
+
+
     elif op == 4:
-        if qtd == 0:
-            print("Nenhuma pessoa cadastrada")
-        if qtd >= 1:
-            print("Nome: " + nome1)
-            print("Idade: " + str(idade1))
-            print("E-mail: " + email1)
-            print("-------------------------")
-        if qtd >= 2:
-            print("Nome: " + nome2)
-            print("Idade: " + str(idade2))
-            print("E-mail: " + email2)
-            print("-------------------------")
-        if qtd >= 3:
-            print("Nome: " + nome3)
-            print("Idade: " + str(idade3))
-            print("E-mail: " + email3)
-            print("-------------------------")
-        print("Total: " + str(qtd)) 
+        pos = 0
+        while pos < len(nomes):
+            print ("nome: " + nomes[pos])
+            print ("idade: " + idades[pos])
+            print ("emails: " + emails[pos])
+            pos = pos + 1
     elif op == 5:
         print("Saindo...")
  
     else:
         print("Opcao invalida")
+    print("Voltando ao menu...\n")
+
  
 print("Fim do programa")
