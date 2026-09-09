@@ -24,16 +24,36 @@ def cadastrarPessoa(nomes, idades, emails):
     else:
         print("Situacao: Menor de idade") 
 
+
+def buscarPessoa(nome):
+    i = 0
+
+    while i < len(nomes):
+        if nome == nomes[i].lower():   
+            return i
+
+        i = i + 1
+
+    return -1
+
+def exibirPessoa(nome, idade, email):
+    print("\nOs dados da pessoa são:")
+
+    print ("nome: " + nome)
+    print ("idade: " + idade)
+    print ("emails: " + email)
+
+def consultarPessoa():
+    nomeConsulta = input("Digite o nome para consultar: ").lower()
+
+    posicao = buscarPessoa(nomeConsulta)
+
+    if posicao >= 0:
+        exibirPessoa(nomes[posicao], idades[posicao], emails[posicao])
+    else:
+        print("Pessoa não encontrada!")
+
  
-nome1 = ""
-idade1 = 0
-email1 = ""
-nome2 = ""
-idade2 = 0
-email2 = ""
-nome3 = ""
-idade3 = 0
-email3 = ""
 
 nomes = []
 idades = []
@@ -51,20 +71,7 @@ while op != 5:
         qtd = qtd + 1
 
     elif op == 2:
-        nomeConsulta = input("Digite o nome para consultar: ").lower()
-        achou = False
-        i = 0
-        while i < len(nomes):
-            if nomeConsulta == nomes[i].lower():
-                print ("nome: " + nomes[i])
-                print ("idade: " + idades[i])
-                print ("emails: " + emails[i])
-                achou = True
-                break
-            i = i + 1
-
-        if achou == False:
-            print("Pessoa não encontrada!")
+        consultarPessoa()
 
     elif op == 3:
         nomeConsulta = input("Digite o nome para consultar: ").lower()
