@@ -37,7 +37,7 @@ def buscarPessoa(nome):
     return -1
 
 def exibirPessoa(nome, idade, email):
-    print("\nOs dados da pessoa são:")
+    print("Os dados da pessoa são:")
 
     print ("nome: " + nome)
     print ("idade: " + str(idade))
@@ -61,7 +61,15 @@ def alterarPessoa():
     else:
         print("Pessoa não encontrada!")
         
+def listarPessoas():
+    pos = 0
+    while pos < len(nomes):
+        print("====== Pessoa de número " + str(pos) + " ======")
 
+        exibirPessoa(nomes[pos], idades[pos], emails[pos])
+        pos = pos + 1
+        return
+    print("Nenhuma pessoa cadastrada.")
 
 
 nomes = []
@@ -86,12 +94,7 @@ while op != 5:
         alterarPessoa()
 
     elif op == 4:
-        pos = 0
-        while pos < len(nomes):
-            print ("nome: " + nomes[pos])
-            print ("idade: " + idades[pos])
-            print ("emails: " + emails[pos])
-            pos = pos + 1
+        listarPessoas()
     elif op == 5:
         print("Saindo...")
  
