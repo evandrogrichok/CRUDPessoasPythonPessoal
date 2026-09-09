@@ -40,20 +40,29 @@ def exibirPessoa(nome, idade, email):
     print("\nOs dados da pessoa são:")
 
     print ("nome: " + nome)
-    print ("idade: " + idade)
+    print ("idade: " + str(idade))
     print ("emails: " + email)
 
 def consultarPessoa():
-    nomeConsulta = input("Digite o nome para consultar: ").lower()
-
-    posicao = buscarPessoa(nomeConsulta)
+    posicao = buscarPessoa(input("Digite o nome para consultar: ").lower())
 
     if posicao >= 0:
         exibirPessoa(nomes[posicao], idades[posicao], emails[posicao])
     else:
         print("Pessoa não encontrada!")
 
- 
+def alterarPessoa():
+    posicao = buscarPessoa(input("Digite o nome para consultar: ").lower())
+
+    if posicao >= 0:
+        nomes[posicao] = input("Alterar o nome dessa pessoa de " + nomes[posicao] + " para: ")
+        idades[posicao] = int(input("Alterar idade dessa pessoa de "+ str(idades[posicao]) + " para: "))
+        emails[posicao] = input("Alterar email dessa pessoa de "+ emails[posicao] + " para: ")
+    else:
+        print("Pessoa não encontrada!")
+        
+
+
 
 nomes = []
 idades = []
@@ -74,21 +83,7 @@ while op != 5:
         consultarPessoa()
 
     elif op == 3:
-        nomeConsulta = input("Digite o nome para consultar: ").lower()
-        achou = False
-        i = 0
-        while i < len(nomes):
-            if nomeConsulta == nomes[i].lower():
-                nomes[i] = input("Alterar o nome dessa pessoa de " + nomes[i] + " para: ")
-                idades[i] = int(input("Alterar idade dessa pessoa de "+ str(idades[i]) + " para: "))
-                emails[i] = input("Alterar email dessa pessoa de "+ emails[i] + " para: ")
-                achou = True
-                break
-            i = i + 1
-
-        if achou == False:
-            print("Pessoa não encontrada!")
-
+        alterarPessoa()
 
     elif op == 4:
         pos = 0
