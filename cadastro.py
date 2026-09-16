@@ -11,7 +11,7 @@ def exibir_menu():
     print("5 - Sair")
     return int(input("Escolha uma opcao: "))
 
-def cadastrar_pessoa(nomes, idades, emails):
+def cadastrar_pessoa():
     nome = input("Informe o nome: ")
     nomes.append(nome)
     idade = input("Informe a idade: ")
@@ -106,7 +106,7 @@ def definir_condicao_de_contato(idade, email):
         else:
             print("Menor de idade sem contato")
 
-def analisar_pessoa(idades, emails):
+def analisar_pessoa():
     procurado = input("Nome para anaisar: ")
     pos = buscar_pessoa(procurado)
     if pos == -1:
@@ -126,7 +126,7 @@ op = 0
 while op != 5:
     op = exibir_menu()
     if op == 1:
-        cadastrar_pessoa(nomes, idades, emails)
+        cadastrar_pessoa()
         qtd = qtd + 1
     elif op == 2:
         consultar_pessoa()
