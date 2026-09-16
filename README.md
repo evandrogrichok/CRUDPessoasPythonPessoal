@@ -1,6 +1,6 @@
 # gqs-cadastro-pessoas
 
-Projeto evolutivo de cadastro de pessoas em Python, utilizado na disciplina Gestão da Qualidade de Software para práticas de modularização, qualidade de código e versionamento com Git.
+## Projeto evolutivo de cadastro de pessoas em Python, utilizado na disciplina Gestão da Qualidade de Software para práticas de modularização, qualidade de código e versionamento com Git.
 
 Projeto desenvolvido na disciplina Gestão da Qualidade de Software.
 
