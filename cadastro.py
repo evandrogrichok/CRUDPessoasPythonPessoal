@@ -46,9 +46,9 @@ def consultar_pessoa():
 def alterar_pessoa():
     posicao = buscar_pessoa(input("Digite o nome para consultar: ").lower())
     if posicao >= 0:
-        nomes[posicao] = input("Alterar o nome dessa pessoa de " + nomes[posicao] + " para: ")
-        idades[posicao] = int(input("Alterar idade dessa pessoa de " + str(idades[posicao]) + " para: "))
-        emails[posicao] = input("Alterar email dessa pessoa de " + emails[posicao] + " para: ")
+        nomes[posicao] = input("Alterar o nome de " + nomes[posicao] + " para...: ")
+        idades[posicao] = int(input("Alterar idade de "+ str(idades[posicao]) + " para...: "))
+        emails[posicao] = input("Alterar email de " + emails[posicao] + " para...: ")
     else:
         print("Pessoa não encontrada!")
 
@@ -117,7 +117,7 @@ def analisar_pessoa(idades, emails):
     classificar_faixa_etaria(idade)
     avaliar_email(email)
     definir_condicao_de_contato(idade, email)
-    
+
 nomes = []
 idades = []
 emails = []
