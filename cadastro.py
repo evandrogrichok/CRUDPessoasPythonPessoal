@@ -16,7 +16,7 @@ def exibir_menu():
     return int(input("Escolha uma opcao: "))
 
 def cadastrar_pessoa():
-    """Função para o cadastro de pessoas, adicionando as entradas às variaveis de array para nome, idade e email."""
+    """Função para o cadastro de pessoas, adicionando as entradas às variaveis de array para nome, idade e email.""" # pylint: disable=line-too-long
     nome = input("Informe o nome: ")
     nomes.append(nome)
     idade = input("Informe a idade: ")
@@ -122,8 +122,8 @@ def definir_condicao_de_contato(idade, email):
             print("Menor de idade sem contato")
 
 def analisar_pessoa():
-    """Faz uma análise completa de pessoa, de nome, classificação etária
-    e condições de contato. Recebe um nome (string)"""    
+    """Realiza uma análise completa de pessoa, de nome, classificação
+    etária e condições de contato. Recebe um nome (string)""" # pylint: disable=trailing-whitespace
     procurado = input("Nome para anaisar: ")
     pos = buscar_pessoa(procurado)
     if pos == -1:
