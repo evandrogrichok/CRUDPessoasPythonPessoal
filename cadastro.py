@@ -1,7 +1,6 @@
 # Sistema de Cadastro de Pessoas - versao 2
 # novos requisitos: menu, consulta, alteracao e listagem
-
-def exibirMenu():
+def exibir_menu():
     print("=========================")
     print(" CADASTRO DE PESSOAS")
     print("=========================")
@@ -12,7 +11,7 @@ def exibirMenu():
     print("5 - Sair")
     return int(input("Escolha uma opcao: "))
 
-def cadastrarPessoa(nomes, idades, emails):
+def cadastrar_pessoa(nomes, idades, emails):
     nome = input("Informe o nome: ")
     nomes.append(nome)
     idade = input("Informe a idade: ")
@@ -22,56 +21,47 @@ def cadastrarPessoa(nomes, idades, emails):
     if int(idade) >= 18:
         print("Situacao: Maior de idade")
     else:
-        print("Situacao: Menor de idade") 
+        print("Situacao: Menor de idade")
 
-
-def buscarPessoa(nome):
+def buscar_pessoa(nome):
     i = 0
-
     while i < len(nomes):
-        if nome == nomes[i].lower():   
+        if nome == nomes[i].lower():
             return i
-
         i = i + 1
-
     return -1
-
-def exibirPessoa(nome, idade, email):
+def exibir_pessoa(nome, idade, email):
     print("Os dados da pessoa são:")
+    print("nome: " + nome)
+    print("idade: " + str(idade))
+    print("emails: " + email)
 
-    print ("nome: " + nome)
-    print ("idade: " + str(idade))
-    print ("emails: " + email)
-
-def consultarPessoa():
-    posicao = buscarPessoa(input("Digite o nome para consultar: ").lower())
-
+def consultar_pessoa():
+    posicao = buscar_pessoa(input("Digite o nome para consultar: ").lower())
     if posicao >= 0:
-        exibirPessoa(nomes[posicao], idades[posicao], emails[posicao])
+        exibir_pessoa(nomes[posicao], idades[posicao], emails[posicao])
     else:
         print("Pessoa não encontrada!")
 
-def alterarPessoa():
-    posicao = buscarPessoa(input("Digite o nome para consultar: ").lower())
-
+def alterar_pessoa():
+    posicao = buscar_pessoa(input("Digite o nome para consultar: ").lower())
     if posicao >= 0:
         nomes[posicao] = input("Alterar o nome dessa pessoa de " + nomes[posicao] + " para: ")
-        idades[posicao] = int(input("Alterar idade dessa pessoa de "+ str(idades[posicao]) + " para: "))
-        emails[posicao] = input("Alterar email dessa pessoa de "+ emails[posicao] + " para: ")
+        idades[posicao] = int(input("Alterar idade dessa pessoa de " + str(idades[posicao]) + " para: "))
+        emails[posicao] = input("Alterar email dessa pessoa de " + emails[posicao] + " para: ")
     else:
         print("Pessoa não encontrada!")
-        
-def listarPessoas():
+
+def listar_pessoas():
     pos = 0
     while pos < len(nomes):
         print("====== Pessoa de número " + str(pos) + " ======")
-
-        exibirPessoa(nomes[pos], idades[pos], emails[pos])
+        exibir_pessoa(nomes[pos], idades[pos], emails[pos])
         pos = pos + 1
         return
     print("Nenhuma pessoa cadastrada.")
 
-def classificarFaixaEtaria(idade):
+def classificar_faixa_etaria(idade):
     if idade < 12:
         print("Faixa etaria: Criança")
     elif idade < 18:
@@ -83,18 +73,16 @@ def classificarFaixaEtaria(idade):
     else:
         print("Faixa etaria: Idoso")
 
-def avaliarEmail(email):
+def avaliar_email(email):
     if email == "":
         print("Cadastro incompleto: e-mail não registrado.")
         return
-
     if "@" not in email:
         print("E-mail inválido")
         return
-    
-    identificarProvedor(email)
+    identificar_provedor(email)
 
-def identificarProvedor(email):
+def identificar_provedor(email):
     if email.endswith("@gmail.com"):
         print("Provedor: Gmail")
     elif email.endswith("@outlook.com"):
@@ -106,7 +94,7 @@ def identificarProvedor(email):
     else:
         print("Provedor: Outro")
 
-def definirCondicaoDeContato(idade, email):
+def definir_condicao_de_contato(idade, email):
     if idade >= 18:
         if email != "":
             print("Cadastro apto para contato")
@@ -118,50 +106,37 @@ def definirCondicaoDeContato(idade, email):
         else:
             print("Menor de idade sem contato")
 
-def analisarPessoa(idades, emails):
+def analisar_pessoa(idades, emails):
     procurado = input("Nome para anaisar: ")
-    pos = buscarPessoa(procurado)
-
+    pos = buscar_pessoa(procurado)
     if pos == -1:
         print("Pessoa nao encontrada")
         return
-    
     idade = idades[pos]
     email = emails[pos]
-
-    classificarFaixaEtaria(idade)
-    avaliarEmail(email)
-    definirCondicaoDeContato(idade, email)
-
+    classificar_faixa_etaria(idade)
+    avaliar_email(email)
+    definir_condicao_de_contato(idade, email)
+    
 nomes = []
 idades = []
 emails = []
- 
 qtd = 0
 op = 0
- 
 while op != 5:
-
-    op = exibirMenu()
-
+    op = exibir_menu()
     if op == 1:
-        cadastrarPessoa(nomes, idades, emails)
+        cadastrar_pessoa(nomes, idades, emails)
         qtd = qtd + 1
-
     elif op == 2:
-        consultarPessoa()
-
+        consultar_pessoa()
     elif op == 3:
-        alterarPessoa()
-
+        alterar_pessoa()
     elif op == 4:
-        listarPessoas()
+        listar_pessoas()
     elif op == 5:
         print("Saindo...")
- 
     else:
         print("Opcao invalida")
     print("Voltando ao menu...\n")
-
- 
 print("Fim do programa")
