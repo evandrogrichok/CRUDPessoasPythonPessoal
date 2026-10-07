@@ -16,7 +16,7 @@ def exibir_menu():
     print("5 - Sair")
     return int(input("Escolha uma opcao: "))
 
-def cadastrar_pessoa():
+def cadastrar_pessoa(cadastro):
     """Função para o cadastro de pessoas, adicionando as entradas às variaveis de array para nome, idade e email.""" # pylint: disable=line-too-long
     nome = input("Informe o nome: ")
     idade = input("Informe a idade: ")
@@ -34,7 +34,7 @@ def exibir_pessoa(pessoa):
     print("idade: " + str(pessoa.getIdade))
     print("emails: " + pessoa.getEmail)
 
-def consultar_pessoa():
+def consultar_pessoa(cadastro):
     """Função de consulta para redirecionamento
     do código às funções buscar_pessoa() e exibir_pessoa()"""
     procurado = input("Nome para consultar:")
@@ -53,14 +53,14 @@ def consultar_pessoa():
 
         exibir_pessoa(pessoa)
         
-def alterar_pessoa():
+def alterar_pessoa(cadastro):
     """Altera os dados de uma pessoa especificada pelo nome."""
     procurado = input("Nome para alterar: ")
     pessoa = cadastro.buscarPorNome(procurado)
     if pessoa is None:
         print("Não encontrado   ")
 
-def listar_pessoas():
+def listar_pessoas(cadastro):
     """lista todas as pessoas cadastradas no sistema."""
     pessoas = cadastro.listar
     if len(pessoas) == 0:
@@ -133,22 +133,28 @@ def analisar_pessoa():
         avaliar_email(pessoa.getEmail)
         definir_condicao_de_contato(pessoa.getIdade, pessoa.getEmail)
 
-cadastro = CadastroPessoas()
 
-op = 0
-while op != 5:
-    op = exibir_menu()
-    if op == 1:
-        cadastrar_pessoa()
-    elif op == 2:
-        consultar_pessoa()
-    elif op == 3:
-        alterar_pessoa()
-    elif op == 4:
-        listar_pessoas()
-    elif op == 5:
-        print("Saindo...")
-    else:
-        print("Opcao invalida")
-    print("Voltando ao menu...\n")
-print("Fim do programa")
+
+def executar():
+
+    cadastro = CadastroPessoas()
+    op = 0 
+    while op != 5:
+        op = exibir_menu()
+        if op == 1:
+            cadastrar_pessoa(cadastro)
+        elif op == 2:
+            consultar_pessoa(cadastro)
+        elif op == 3:
+            alterar_pessoa(cadastro)
+        elif op == 4:
+            listar_pessoas(cadastro)
+        elif op == 5:
+            print("Saindo...")
+        else:
+            print("Opcao invalida")
+        print("Voltando ao menu...\n")
+    print("Fim do programa")
+
+if __name__ == "__main__":
+    executar()
