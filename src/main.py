@@ -120,7 +120,7 @@ def definir_condicao_de_contato(idade, email):
         else:
             print("Menor de idade sem contato")
 
-def analisar_pessoa():
+def analisar_pessoa(cadastro):
     """Realiza uma análise completa de pessoa, de nome, classificação
     etária e condições de contato. Recebe um nome (string)""" # pylint: disable=trailing-whitespace
     procurado = input("Nome para alterar: ")
