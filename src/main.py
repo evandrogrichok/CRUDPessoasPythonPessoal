@@ -30,9 +30,9 @@ def cadastrar_pessoa(cadastro):
 def exibir_pessoa(pessoa):
     """função para exibir uma pessoa com dados especificados."""
     print("Os dados da pessoa são:")
-    print("nome: " + pessoa.getNome)
-    print("idade: " + str(pessoa.getIdade))
-    print("emails: " + pessoa.getEmail)
+    print("nome: " + pessoa.getNome())
+    print("idade: " + str(pessoa.getIdade()))
+    print("emails: " + pessoa.getEmail())
 
 def consultar_pessoa(cadastro):
     """Função de consulta para redirecionamento
@@ -62,7 +62,7 @@ def alterar_pessoa(cadastro):
 
 def listar_pessoas(cadastro):
     """lista todas as pessoas cadastradas no sistema."""
-    pessoas = cadastro.listar
+    pessoas = cadastro.listar()
     if len(pessoas) == 0:
         print("Nenhuma pessoa cadastrada.")
         return
@@ -136,7 +136,6 @@ def analisar_pessoa(cadastro):
 
 
 def executar():
-
     cadastro = CadastroPessoas()
     op = 0 
     while op != 5:
