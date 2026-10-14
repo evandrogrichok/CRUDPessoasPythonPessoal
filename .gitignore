@@ -1,5 +1,4 @@
 # Arquivos gerados pelo Python
-__ pycache __/
-*. pyc
-
- 
+__pycache__/
+*.pyc
+.pytest_cache/
