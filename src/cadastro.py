@@ -1,3 +1,4 @@
+"""Módulo com as regras de negócio do cadastro de pessoas."""
 from typing import List, Optional
 
 from pessoa import Pessoa
@@ -30,9 +31,7 @@ class CadastroPessoas:
         pessoa = self.buscarPorNome(nome)
         if pessoa is None:
             return None
-
-        pessoa.setNome(novo_nome)
-        pessoa.setIdade(nova_idade)
-        pessoa.setEmail(novo_email)
-
-        return pessoa
+        nova_pessoa = Pessoa(novo_nome, nova_idade, novo_email)
+        if self.__repositorio.alterar(nome, nova_pessoa):
+            return nova_pessoa
+        return None
