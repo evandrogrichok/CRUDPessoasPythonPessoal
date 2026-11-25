@@ -1,9 +1,11 @@
+"""Módulo que implementa o repositório de pessoas em memória."""
 from typing import List, Optional
 
 from pessoa import Pessoa
 from repositorio_pessoas import RepositorioPessoas
 
 class RepositorioPessoasMemoria(RepositorioPessoas):
+    """Implementa o repositório de pessoas em memória."""
     def __init__(self) -> None:
         self.__pessoas: List[Pessoa] = []
 

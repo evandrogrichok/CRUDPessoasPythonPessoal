@@ -3,6 +3,15 @@
 # novos requisitos: menu, consulta, alteracao e listagem
 
 from cadastro import CadastroPessoas
+from repositorio_pessoas_memoria import RepositorioPessoasMemoria
+from repositorio_pessoas_mysql import RepositorioPessoasMySQL
+
+USAR_MYSQL = True
+
+def criar_repositorio():
+    if USAR_MYSQL:
+        return RepositorioPessoasMySQL.a_partir_do_ambiente()
+    return RepositorioPessoasMemoria()
 
 def exibir_menu():
     """Função para exibição do menu, retornando um int para opção escolhida."""
@@ -54,11 +63,26 @@ def consultar_pessoa(cadastro):
         exibir_pessoa(pessoa)
         
 def alterar_pessoa(cadastro):
-    """Altera os dados de uma pessoa especificada pelo nome."""
+    """Altera os dados de uma pessoa."""
     procurado = input("Nome para alterar: ")
     pessoa = cadastro.buscarPorNome(procurado)
     if pessoa is None:
-        print("Não encontrado   ")
+        print("Nao encontrado")
+        return
+    novo_nome = input("Novo nome: ")
+    nova_idade = int(input("Nova idade: "))
+    novo_email = input("Novo e-mail: ")
+    pessoa_alterada = cadastro.alterar(
+        procurado,
+        novo_nome,
+        nova_idade,
+        novo_email
+    )
+    if pessoa_alterada is None:
+        print("Nao foi possivel alterar a pessoa")
+    else:
+        print("Pessoa alterada!")
+        exibir_pessoa(pessoa_alterada)
 
 def listar_pessoas(cadastro):
     """lista todas as pessoas cadastradas no sistema."""
@@ -136,7 +160,7 @@ def analisar_pessoa(cadastro):
 
 
 def executar():
-    cadastro = CadastroPessoas()
+    cadastro = CadastroPessoas(criar_repositorio())
     op = 0 
     while op != 5:
         op = exibir_menu()
